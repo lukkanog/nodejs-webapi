@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-webapi",
+  "version": "1.0.0",
+  "description": "Projeto para aprendizagem de criação de uma Api REST com o Node.js",
+  "main": "index.js",
+  "scripts": {
+    "start" : "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukkanog/nodejs-webapi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukkanog/nodejs-webapi/issues"
+  },
+  "homepage": "https://github.com/lukkanog/nodejs-webapi#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.11",
+    "nodemon": "^2.0.7"
+  }
+}
