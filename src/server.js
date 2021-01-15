@@ -8,5 +8,5 @@ app.listen(3000, () => {
 
 app.use(express.json())
 
-
+// Controller de usuários
 require("./controllers/usersController")(app);
