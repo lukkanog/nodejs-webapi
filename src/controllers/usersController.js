@@ -1,6 +1,9 @@
 const express = require("express");
-const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const User = require("../models/User");
+const authConfig = require("../config/auth.json")
 
 
 const router = express.Router();
@@ -19,7 +22,10 @@ router.post("/register", async(req, res) => {
 
         user.password = undefined;
 
-        return res.send({ user })
+        res.send({ 
+            user, 
+            token : generateToken(user.id) 
+        });
 
     } catch (error) {
         return res.status(400).send({ error: "User registration failed" });
@@ -40,12 +46,25 @@ router.post("/login", async(req,res) => {
         return res.status(400).send({ error: "Invalid email or password."});
         
         user.password = undefined;
-        res.send({ user });
+
+        // CRIAÇÃO DE TOKEN JWT
+        
+
+        res.send({ 
+            user, 
+            token : generateToken(user.id) 
+        });
     
     } catch (error) {
-        return res.status(400).send({ error: error});
+        return res.status(400).send({ error: error.message});
 
     }
 })
+
+const generateToken = function(params = {}){
+    return token = jwt.sign({ params }, authConfig.secret, {
+        expiresIn : 86400,
+    })
+}
 
 module.exports = app => app.use("/users", router)

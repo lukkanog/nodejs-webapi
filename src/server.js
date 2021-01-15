@@ -10,3 +10,4 @@ app.use(express.json())
 
 // Controller de usuários
 require("./controllers/usersController")(app);
+require("./controllers/projectsController")(app);
