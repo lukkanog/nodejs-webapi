@@ -8,6 +8,5 @@ app.listen(3000, () => {
 
 app.use(express.json())
 
-app.get("/", (req, res) => {
-    res.send("Teste");
-})
+
+require("./controllers/usersController")(app);
