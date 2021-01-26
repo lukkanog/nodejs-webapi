@@ -123,7 +123,7 @@ router.post("/reset-password", async (req,res) => {
     try {
         const {email, password, token} = req.body;
 
-        const user = User.findOne({email}).select("+passwordResetToken passwordResetExpires");
+        const user = await User.findOne({ email }).select("+passwordResetToken passwordResetExpires");
 
 
 
@@ -133,15 +133,15 @@ router.post("/reset-password", async (req,res) => {
 
 
 
-
         if (token !== user.passwordResetToken ){
-            console.log(user.passwordResetToken)
+            console.log("aqui")
             return res.status(400).send({ error: "Invalid token" });
+            // return res.status(400).send({ error: "Invalid token" });
         }
 
         const now = new Date();
         
-        if (now !== user.$passwordResetExpires)
+        if (now > user.passwordResetExpires)
             return res.status(400).send({ error: "Expired token" });
 
 
