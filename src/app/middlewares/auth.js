@@ -22,7 +22,7 @@ module.exports =  (req, res, next) => {
         if (error)
             return res.status(401).send({ error: "Invalid token" });
 
-        req.userId = decoded.id;
+        req.userId = decoded.params;
 
         return next();
 
